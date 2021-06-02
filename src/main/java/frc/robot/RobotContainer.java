@@ -12,7 +12,7 @@ import frc.robot.subsystems.DriveTrain;
 public class RobotContainer {
     // Drivetrain subsystem.
     private final DriveTrain robotDrive = new DriveTrain();
-    public Joystick stick;
+    private final Joystick stick = new Joystick(0);
 
     public RobotContainer() {
         robotDrive.setDefaultCommand(
