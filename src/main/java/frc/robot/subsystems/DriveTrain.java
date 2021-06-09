@@ -13,19 +13,37 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /** Add your docs here. */
 public class DriveTrain extends SubsystemBase {
-    private final CANSparkMax rearLeft = new CANSparkMax(1, MotorType.kBrushed);
-    private final CANSparkMax frontLeft = new CANSparkMax(2, MotorType.kBrushed);
-    private final CANSparkMax rearRight = new CANSparkMax(3, MotorType.kBrushed);
-    private final CANSparkMax frontRight = new CANSparkMax(4, MotorType.kBrushed);
-    private final SpeedControllerGroup left = new SpeedControllerGroup(rearLeft, frontLeft);
-    private final SpeedControllerGroup right = new SpeedControllerGroup(rearRight, frontRight);
-    private final DifferentialDrive drive = new DifferentialDrive(left, right);
+    private final CANSparkMax rearLeft;
+    private final CANSparkMax frontLeft;
+    private final CANSparkMax rearRight;
+    private final CANSparkMax frontRight;
+    private final SpeedControllerGroup left;
+    private final SpeedControllerGroup right;
+    private final DifferentialDrive drive;
 
+    // Constructor, initialize motor controllers and groups.
     public DriveTrain() {
-
+        rearLeft = new CANSparkMax(1, MotorType.kBrushed);
+        frontLeft = new CANSparkMax(2, MotorType.kBrushed);
+        rearRight = new CANSparkMax(3, MotorType.kBrushed);
+        frontRight = new CANSparkMax(4, MotorType.kBrushed);
+        left = new SpeedControllerGroup(rearLeft, frontLeft);
+        right = new SpeedControllerGroup(rearRight, frontRight);
+        drive = new DifferentialDrive(left, right);
     }
 
+    // Basic single joystick drive configuration
     public void arcadeDrive(double speed, double rotation) {
         drive.arcadeDrive(speed, rotation);
+    }
+
+    // Drive forwards
+    public void driveForward(double speed) {
+        drive.arcadeDrive(speed, 0.0);
+    }
+
+    public void stopMotors() {
+        left.set(0.0);
+        right.set(0.0);
     }
 }
