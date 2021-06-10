@@ -23,12 +23,12 @@ public class DriveTrain extends SubsystemBase {
 
     // Constructor, initialize motor controllers and groups.
     public DriveTrain() {
-        rearLeft = new CANSparkMax(1, MotorType.kBrushed);
-        frontLeft = new CANSparkMax(2, MotorType.kBrushed);
-        rearRight = new CANSparkMax(3, MotorType.kBrushed);
-        frontRight = new CANSparkMax(4, MotorType.kBrushed);
-        left = new SpeedControllerGroup(rearLeft, frontLeft);
-        right = new SpeedControllerGroup(rearRight, frontRight);
+        rearLeft = new CANSparkMax(1, MotorType.kBrushed); rearLeft.setInverted(false);
+        frontLeft = new CANSparkMax(2, MotorType.kBrushed); frontLeft.setInverted(false);
+        rearRight = new CANSparkMax(3, MotorType.kBrushed); rearRight.setInverted(false);
+        frontRight = new CANSparkMax(4, MotorType.kBrushed); frontRight.setInverted(false);
+        left = new SpeedControllerGroup(rearLeft, rearLeft);
+        right = new SpeedControllerGroup(rearRight, rearRight);
         drive = new DifferentialDrive(left, right);
     }
 
