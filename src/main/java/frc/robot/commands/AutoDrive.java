@@ -28,7 +28,7 @@ public class AutoDrive extends CommandBase {
     timer.reset();
     timer.start();
     while(timer.get() < 5.0) {
-      driveTrain.driveForward(0.7);
+      driveTrain.driveForward(0.4);
     }
     isFinished = true;
   }
